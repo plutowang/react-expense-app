@@ -9,7 +9,6 @@ let setTextFilter,
   sortByDate,
   setStartDate,
   setEndDate,
-  onFocusChange,
   wrapper;
 
 beforeEach(() => {
