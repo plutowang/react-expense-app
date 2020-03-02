@@ -9,7 +9,7 @@ module.exports = env => {
     entry: path.resolve(__dirname, "src/app.js"),
     // entry: path.resolve(__dirname, "src/playground/HOC.js"),
     output: {
-      path: path.join(__dirname, "public"),
+      path: path.join(__dirname, "public", "dist"),
       filename: "bundle.js"
     },
     module: {
@@ -46,7 +46,8 @@ module.exports = env => {
       contentBase: path.join(__dirname, "public"),
       historyApiFallback: true,
       // compress: true,
-      port: 9000
+      port: 9000,
+      publicPath: "/dist/"
     }
   };
 };
