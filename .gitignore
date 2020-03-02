@@ -6,3 +6,7 @@ dist/
 *-error.log
 package-lock.json
 __snapshots__/
+bundle.*
+/public/style.css
+/public/style.css.map
+*.map
