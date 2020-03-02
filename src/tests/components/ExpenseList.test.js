@@ -12,3 +12,11 @@ test("should render ExpenseList empty expenses", () => {
   const wrapper = shallow(<ExpenseList expenses={[]} />);
   expect(wrapper).toMatchSnapshot();
 });
+
+
+test("should remove all expenses", () => {
+  const removeAllExpense = jest.fn();
+  const wrapper = shallow(<ExpenseList expenses={expenses} removeAll={removeAllExpense}/>);
+  wrapper.find("button").simulate("click")
+  expect(removeAllExpense).toHaveBeenLastCalledWith()
+});

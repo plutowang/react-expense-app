@@ -25,6 +25,11 @@ export const removeExpense = ({ id } = {}) => ({
   id
 });
 
+// REMOVE_ALL_EXPENSE
+export const removeAllExpense = () => ({
+  type: "REMOVE_ALL_EXPENSE",
+});
+
 // EDIT_EXPENSE
 export const editExpense = (id, updates) => ({
   type: "EDIT_EXPENSE",
