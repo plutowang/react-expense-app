@@ -1,5 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import moment from "moment";
+import numeral from "numeral";
 
 // Export a stateless function components
 // show up description, amount, createdAt
@@ -9,7 +11,9 @@ export const ExpenseListItem = ({ id, description, amount, createAt }) => (
       <h3>{description}</h3>
     </Link>
     <p>
-      ${amount} -- {createAt}
+      {numeral(amount / 100).format("$0,0.00")}
+      --
+      {moment(createAt).format("MMM. DDDo, YYYY")}
     </p>
   </div>
 );
