@@ -37,7 +37,7 @@ test("should add expenses", () => {
     amount: 545,
     createAt: 0
   };
-  const action = { type: "ADD_EXPENSE", expenses: expense };
+  const action = { type: "ADD_EXPENSE", expense };
   const state = expensesReducer(expenses, action);
   expect(state).toEqual(expenses.concat(expense));
 });
