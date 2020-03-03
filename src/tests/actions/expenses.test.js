@@ -4,7 +4,9 @@ import {
   startAddExpense,
   addExpense,
   editExpense,
-  removeExpense
+  removeExpense,
+  setExpenses,
+  startSetExpenses
 } from "../../actions/expenses";
 import expenses from "../fixtures/expenses";
 import database from "../../firebase/firebase";
@@ -100,4 +102,25 @@ test("should add expense with default to database and store", done => {
       // database.ref(`expenses/${snapshot.key}`).remove()
       done();
     });
+});
+
+test("should setup expense action object with expenses", () => {
+  const action = setExpenses(expenses);
+  expect(action).toEqual({
+    type: "SET_EXPENSES",
+    expenses
+  });
+});
+
+test("should fatch the expenses from firebase correctly", done => {
+  const store = createMockStore({});
+  store.getState();
+  store.dispatch(startSetExpenses()).then(() => {
+    const actions = store.getActions();
+    expect(actions[0]).toEqual({
+      type: "SET_EXPENSES",
+      expenses
+    });
+    done();
+  });
 });

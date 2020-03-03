@@ -66,3 +66,10 @@ test("should not edit expenses if id not exist", () => {
   const state = expensesReducer(expenses, action);
   expect(state).toEqual(expenses);
 });
+
+test("should set expense", () => {
+  const setExpensesData = [expenses[0], expenses[2]]
+  const action = { type: "SET_EXPENSES", expenses:setExpensesData };
+  const state = expensesReducer(expenses, action);
+  expect(state).toEqual(setExpensesData);
+});
