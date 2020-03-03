@@ -14,13 +14,13 @@ export const startAddExpense = expenseData => {
       description = "",
       note = "",
       amount = 0,
-      createAt = 0
+      createdAt = 0
     } = expenseData || {};
     const expense = {
       description,
       note,
       amount,
-      createAt
+      createdAt
     };
     // By returning the `promise chain` we can continue chaining on over here
     return database
@@ -43,9 +43,9 @@ export const removeExpense = ({ id } = {}) => ({
   id
 });
 
-// REMOVE_ALL_EXPENSE
-export const removeAllExpense = () => ({
-  type: "REMOVE_ALL_EXPENSE"
+// REMOVE_ALL_EXPENSES
+export const removeAllExpenses = () => ({
+  type: "REMOVE_ALL_EXPENSES"
 });
 
 // EDIT_EXPENSE
@@ -54,3 +54,8 @@ export const editExpense = (id, updates) => ({
   id,
   updates
 });
+
+// SET_EXPENSES
+// export const setExpenses;
+
+// export const startSetExpenses;

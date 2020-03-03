@@ -52,14 +52,14 @@ const expenses = [
     description: "January Rent",
     note: "This was the fial payment for that address",
     amount: 54500,
-    createAt: 0
+    createdAt: 0
   },
   {
     id: "1",
     description: "Gum Bill",
     note: "This was the fial payment for gum",
     amount: 900,
-    createAt: moment(0)
+    createdAt: moment(0)
       .subtract(4, "days")
       .valueOf()
   },
@@ -68,7 +68,7 @@ const expenses = [
     description: "Water Bill",
     note: "This was the fial payment for water",
     amount: 1200,
-    createAt: moment(0)
+    createdAt: moment(0)
       .add(4, "days")
       .valueOf()
   },
@@ -77,7 +77,7 @@ const expenses = [
     description: "Gym Bill",
     note: "This was the fial payment for gym",
     amount: 890,
-    createAt: moment(0)
+    createdAt: moment(0)
       .add(8, "days")
       .valueOf()
   }
@@ -88,7 +88,7 @@ const expenses = [
 //     description: expense.description,
 //     note: expense.note,
 //     amount: expense.amount,
-//     createAt: expense.createAt
+//     createdAt: expense.createdAt
 //   });
 // });
 
@@ -97,7 +97,7 @@ const expenses = [
 //     description: expense.description,
 //     note: expense.note,
 //     amount: expense.amount,
-//     createAt: expense.createAt
+//     createdAt: expense.createdAt
 //   };
 //   return map;
 // }, {});

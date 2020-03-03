@@ -10,7 +10,7 @@ const expensesReducer = (state = expensesReducerDefaultState, action) => {
       return state.filter(({ id }) => {
         return id !== action.id;
       });
-    case "REMOVE_ALL_EXPENSE":
+    case "REMOVE_ALL_EXPENSES":
       state=[]
       return state
     case "EDIT_EXPENSE":

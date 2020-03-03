@@ -18,13 +18,13 @@ test("should not remove expenses if id not found", () => {
 });
 
 test("should remove all expenses", () => {
-  const action = { type: "REMOVE_ALL_EXPENSE" };
+  const action = { type: "REMOVE_ALL_EXPENSES" };
   const state = expensesReducer(expenses, action);
   expect(state).toEqual([]);
 });
 
 test("should not remove expenses if no expense", () => {
-  const action = { type: "REMOVE_ALL_EXPENSE" };
+  const action = { type: "REMOVE_ALL_EXPENSES" };
   const state = expensesReducer(undefined, action);
   expect(state).toEqual([]);
 });
@@ -35,7 +35,7 @@ test("should add expenses", () => {
     description: "January Water Bill",
     note: "This was the water bill",
     amount: 545,
-    createAt: 0
+    createdAt: 0
   };
   const action = { type: "ADD_EXPENSE", expense };
   const state = expensesReducer(expenses, action);

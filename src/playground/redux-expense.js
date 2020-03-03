@@ -10,7 +10,7 @@ const addExpense = ({
   description = "",
   note = "",
   amount = 0,
-  createAt = 0
+  createdAt = 0
 } = {}) => ({
   type: "ADD_EXPENSE",
   expenses: {
@@ -18,7 +18,7 @@ const addExpense = ({
     description,
     note,
     amount,
-    createAt
+    createdAt
   }
 });
 
@@ -148,11 +148,11 @@ const getVisableExpenses = (expenses, { text, sortBy, startDate, endDate }) => {
       // we have complete mathch and
       // we want to return `True` form the filter
 
-      // undifined startDate or createAt is after the startDate
+      // undifined startDate or createdAt is after the startDate
       const startDateMatch =
-        typeof startDate !== "number" || expense.createAt >= startDate;
+        typeof startDate !== "number" || expense.createdAt >= startDate;
       const endDateMatch =
-        typeof endDate !== "number" || expense.createAt <= endDate;
+        typeof endDate !== "number" || expense.createdAt <= endDate;
       // const textMatch =
       //   typeof text !== "string" ||
       //   (expense.description &&
@@ -170,7 +170,7 @@ const getVisableExpenses = (expenses, { text, sortBy, startDate, endDate }) => {
     .sort((a, b) => {
       // sort by deceending
       if (sortBy === "date") {
-        return a.createAt < b.createAt ? 1 : -1;
+        return a.createdAt < b.createdAt ? 1 : -1;
       }
       if (sortBy === "amount") {
         return b.amount - a.amount;
@@ -200,13 +200,13 @@ const unsubscribe = store.subscribe(() => {
 });
 
 const expenseOne = store.dispatch(
-  addExpense({ description: "Rent", amount: 100, createAt: 1000 })
+  addExpense({ description: "Rent", amount: 100, createdAt: 1000 })
 );
 const expenseTwo = store.dispatch(
-  addExpense({ description: "Coffee", amount: 300, createAt: -1000 })
+  addExpense({ description: "Coffee", amount: 300, createdAt: -1000 })
 );
 const expenseThree = store.dispatch(
-  addExpense({ description: "Food", amount: 400, createAt: 1500 })
+  addExpense({ description: "Food", amount: 400, createdAt: 1500 })
 );
 // console.log(expenseOne);
 
@@ -234,7 +234,7 @@ const demoState = {
       description: "January Rent",
       note: "This was the fial payment for that address",
       amount: 54500,
-      createAt: 0
+      createdAt: 0
     }
   ],
   filters: {

@@ -5,7 +5,7 @@ import numeral from "numeral";
 
 // Export a stateless function components
 // show up description, amount, createdAt
-export const ExpenseListItem = ({ id, description, amount, createAt }) => (
+export const ExpenseListItem = ({ id, description, amount, createdAt }) => (
   <div>
     <Link to={`/edit/${id}`}>
       <h3>{description}</h3>
@@ -13,7 +13,7 @@ export const ExpenseListItem = ({ id, description, amount, createAt }) => (
     <p>
       {numeral(amount / 100).format("$0,0.00")}
       --
-      {moment(createAt).format("MMM. DDDo, YYYY")}
+      {moment(createdAt).format("MMM. DDDo, YYYY")}
     </p>
   </div>
 );

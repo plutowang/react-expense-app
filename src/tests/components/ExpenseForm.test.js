@@ -145,7 +145,7 @@ test("should call onSubmit props for valid form submittion", () => {
     description: expenses[0].description,
     amount: expenses[0].amount,
     note: expenses[0].note,
-    createAt: expenses[0].createAt.valueOf()
+    createdAt: expenses[0].createdAt.valueOf()
   });
 });
 
@@ -153,7 +153,7 @@ test("should set new date on date change", () => {
   const now = moment();
   const wrapper = shallow(<ExpenseForm />);
   wrapper.find("withStyles(SingleDatePicker)").prop("onDateChange")(now);
-  expect(wrapper.state("createAt")).toEqual(now);
+  expect(wrapper.state("createdAt")).toEqual(now);
 });
 
 test("should set calendar focus on change", () => {

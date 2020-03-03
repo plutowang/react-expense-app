@@ -4,16 +4,16 @@ import moment from "moment";
 const getVisableExpenses = (expenses, { text, sortBy, startDate, endDate }) => {
   return expenses
     .filter(expense => {
-      const createAtMoment = moment(expense.createAt);
+      const createdAtMoment = moment(expense.createdAt);
       // if all three of these are true,
       // we have complete mathch and
       // we want to return `True` form the filter
-      // undifined startDate or createAt is after the startDate
+      // undifined startDate or createdAt is after the startDate
       const startDateMatch = startDate
-        ? startDate.isSameOrBefore(createAtMoment, "day")
+        ? startDate.isSameOrBefore(createdAtMoment, "day")
         : true;
       const endDateMatch = endDate
-        ? endDate.isSameOrAfter(createAtMoment, "day")
+        ? endDate.isSameOrAfter(createdAtMoment, "day")
         : true;
       const textMatch =
         typeof text !== "string" ||
@@ -27,7 +27,7 @@ const getVisableExpenses = (expenses, { text, sortBy, startDate, endDate }) => {
     .sort((a, b) => {
       // sort by deceending
       if (sortBy === "date") {
-        return a.createAt < b.createAt ? 1 : -1;
+        return a.createdAt < b.createdAt ? 1 : -1;
       } else if (sortBy === "amount") {
         return b.amount - a.amount;
       }

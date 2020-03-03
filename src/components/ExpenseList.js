@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import ExpenseListItem from "./ExpenseListItem";
-import { removeAllExpense } from "../actions/expenses";
+import { removeAllExpenses } from "../actions/expenses";
 import selectExpenses from "../selectors/expenses";
 
 export const ExpenseList = props => (
@@ -25,7 +25,7 @@ const mapStateToProps = state => {
   };
 };
 const mapDispatchToProps = dispatch => ({
-  removeAll: ()=>dispatch(removeAllExpense())
+  removeAll: ()=>dispatch(removeAllExpenses())
 });
 // HOC
 export default connect(mapStateToProps, mapDispatchToProps)(ExpenseList);

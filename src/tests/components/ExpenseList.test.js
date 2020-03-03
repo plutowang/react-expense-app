@@ -15,8 +15,8 @@ test("should render ExpenseList empty expenses", () => {
 
 
 test("should remove all expenses", () => {
-  const removeAllExpense = jest.fn();
-  const wrapper = shallow(<ExpenseList expenses={expenses} removeAll={removeAllExpense}/>);
+  const removeAllExpenses = jest.fn();
+  const wrapper = shallow(<ExpenseList expenses={expenses} removeAll={removeAllExpenses}/>);
   wrapper.find("button").simulate("click")
-  expect(removeAllExpense).toHaveBeenLastCalledWith()
+  expect(removeAllExpenses).toHaveBeenLastCalledWith()
 });

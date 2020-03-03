@@ -8,7 +8,18 @@ import {
 } from "../../actions/expenses";
 import expenses from "../fixtures/expenses";
 import database from "../../firebase/firebase";
+
 const createMockStore = configureStore([thunk]);
+beforeEach(done => {
+  const expensesData = {};
+  expenses.forEach(({ id, description, note, amount, createdAt }) => {
+    expensesData[id] = { description, note, amount, createdAt };
+  });
+  database
+    .ref("expenses")
+    .set(expensesData)
+    .then(done());
+});
 
 test("should setup remove expense action object", () => {
   const action = removeExpense({ id: "123abc" });
@@ -43,7 +54,7 @@ test("should add expense to database and store", done => {
     description: "Mock",
     note: "Test Mock Note",
     amount: 120,
-    createAt: -20
+    createdAt: -20
   };
   store
     .dispatch(startAddExpense(expense))
@@ -69,7 +80,7 @@ test("should add expense to database and store", done => {
 
 test("should add expense with default to database and store", done => {
   const store = createMockStore({});
-  const defaultExpense = { description: "", note: "", amount: 0, createAt: 0 };
+  const defaultExpense = { description: "", note: "", amount: 0, createdAt: 0 };
   store
     .dispatch(startAddExpense())
     .then(() => {
