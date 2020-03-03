@@ -62,7 +62,7 @@ test("should add expense to database and store", done => {
     .then(snapshot => {
       const val = snapshot.val();
       expect(val).toEqual(expense);
-      database.ref(`expenses/${snapshot.key}`).remove()
+      // database.ref(`expenses/${snapshot.key}`).remove()
       done();
     });
 });
@@ -86,7 +86,7 @@ test("should add expense with default to database and store", done => {
     })
     .then(snapshot => {
       expect(snapshot.val()).toEqual(defaultExpense);
-      database.ref(`expenses/${snapshot.key}`).remove()
+      // database.ref(`expenses/${snapshot.key}`).remove()
       done();
     });
 });

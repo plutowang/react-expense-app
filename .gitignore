@@ -9,3 +9,6 @@ bundle.*
 /public/style.css
 /public/style.css.map
 *.map
+.env.development
+.env.test
+.env.production

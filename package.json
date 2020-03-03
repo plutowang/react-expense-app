@@ -9,7 +9,7 @@
     "build:prod": "webpack -p --env production --progress",
     "dev-server": "webpack-dev-server",
     "build-babel": "babel src/app.js --out-file=public/scripts/app.js --presets=env,react --watch",
-    "test": "jest --config=jest.config.json",
+    "test": "cross-env NODE_ENV=test jest --config=jest.config.json",
     "start": "node server/server.js",
     "heroku-postbuild": "yarn run build:prod"
   },
@@ -23,6 +23,7 @@
     "babel-preset-env": "^1.5.2",
     "babel-preset-react": "^6.24.1",
     "css-loader": "^3.4.2",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "firebase": "^7.9.3",
     "mini-css-extract-plugin": "^0.9.0",
@@ -48,6 +49,7 @@
   "devDependencies": {
     "babel-cli": "^6.24.1",
     "babel-eslint": "^10.0.3",
+    "cross-env": "^7.0.0",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.2",
     "enzyme-to-json": "^3.4.4",
