@@ -6,7 +6,6 @@ import { firebase } from "./firebase/firebase";
 
 import configureStore from "./store/configureStore";
 import { startSetExpenses } from "./actions/expenses";
-import LoginPage from "./components/LoginPage";
 
 import "./firebase/firebase";
 
