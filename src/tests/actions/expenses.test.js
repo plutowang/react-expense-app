@@ -6,7 +6,9 @@ import {
   editExpense,
   removeExpense,
   setExpenses,
-  startSetExpenses
+  startSetExpenses,
+  startRemoveExpenses,
+  startRemoveAllExpenses
 } from "../../actions/expenses";
 import expenses from "../fixtures/expenses";
 import database from "../../firebase/firebase";
@@ -123,4 +125,61 @@ test("should fatch the expenses from firebase correctly", done => {
     });
     done();
   });
+});
+
+test("should remove expenses from firebase correctly", done => {
+  const store = createMockStore({});
+  const afterExpenses = [];
+  store
+    .dispatch(startRemoveExpenses({ id: expenses[0].id }))
+    .then(() => {
+      const actions = store.getActions();
+      expect(actions[0]).toEqual({
+        type: "REMOVE_EXPENSE",
+        id: expenses[0].id
+      });
+      return database
+        .ref("expenses")
+        .once("value")
+        .then(snapshot => {
+          snapshot.forEach(snapshotChild => {
+            afterExpenses.push({
+              id: snapshotChild.key,
+              ...snapshotChild.val()
+            });
+          });
+        });
+    })
+    .then(() => {
+      expect(afterExpenses).toEqual([expenses[1], expenses[2], expenses[3]]);
+      done();
+    });
+});
+
+test("should remove all expenses from firebase correctly", done => {
+  const store = createMockStore({});
+  const afterExpenses = [];
+  store
+    .dispatch(startRemoveAllExpenses())
+    .then(() => {
+      const actions = store.getActions();
+      expect(actions[0]).toEqual({
+        type: "REMOVE_ALL_EXPENSES"
+      });
+      return database
+        .ref("expenses")
+        .once("value")
+        .then(snapshot => {
+          snapshot.forEach(snapshotChild => {
+            afterExpenses.push({
+              id: snapshotChild.key,
+              ...snapshotChild.val()
+            });
+          });
+        });
+    })
+    .then(() => {
+      expect(afterExpenses).toEqual([]);
+      done();
+    });
 });
