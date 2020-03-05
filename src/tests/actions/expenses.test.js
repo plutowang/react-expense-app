@@ -14,6 +14,7 @@ import {
 import expenses from "../fixtures/expenses";
 import database from "../../firebase/firebase";
 
+const uid = "12345abc";
 const createMockStore = configureStore([thunk]);
 beforeEach(done => {
   const expensesData = {};
@@ -21,7 +22,7 @@ beforeEach(done => {
     expensesData[id] = { description, note, amount, createdAt };
   });
   database
-    .ref("expenses")
+    .ref(`users/${uid}/expenses`)
     .set(expensesData)
     .then(done());
 });
@@ -46,7 +47,7 @@ test("should setup edit expense action object", () => {
 });
 
 test("should edit expense to database and store", done => {
-  const store = createMockStore({});
+  const store = createMockStore({ auth: { uid } });
   const id = expenses[0].id;
   const updates = {
     note: "UPDATES NOTES",
@@ -61,7 +62,7 @@ test("should edit expense to database and store", done => {
         id,
         updates
       });
-      return database.ref(`expenses/${id}`).once("value");
+      return database.ref(`users/${uid}/expenses/${id}`).once("value");
     })
     .then(snapshot => {
       expect(snapshot.val()).toEqual({
@@ -84,7 +85,7 @@ test("should setup add expense action object with provide value", () => {
 });
 
 test("should add expense to database and store", done => {
-  const store = createMockStore({});
+  const store = createMockStore({ auth: { uid } });
   const expense = {
     description: "Mock",
     note: "Test Mock Note",
@@ -103,7 +104,9 @@ test("should add expense to database and store", done => {
         }
       });
 
-      return database.ref(`expenses/${actions[0].expense.id}`).once("value");
+      return database
+        .ref(`users/${uid}/expenses/${actions[0].expense.id}`)
+        .once("value");
     })
     .then(snapshot => {
       const val = snapshot.val();
@@ -114,7 +117,7 @@ test("should add expense to database and store", done => {
 });
 
 test("should add expense with default to database and store", done => {
-  const store = createMockStore({});
+  const store = createMockStore({ auth: { uid } });
   const defaultExpense = { description: "", note: "", amount: 0, createdAt: 0 };
   store
     .dispatch(startAddExpense())
@@ -128,7 +131,9 @@ test("should add expense with default to database and store", done => {
         }
       });
 
-      return database.ref(`expenses/${actions[0].expense.id}`).once("value");
+      return database
+        .ref(`users/${uid}/expenses/${actions[0].expense.id}`)
+        .once("value");
     })
     .then(snapshot => {
       expect(snapshot.val()).toEqual(defaultExpense);
@@ -146,7 +151,7 @@ test("should setup expense action object with expenses", () => {
 });
 
 test("should fatch the expenses from firebase correctly", done => {
-  const store = createMockStore({});
+  const store = createMockStore({ auth: { uid } });
   store.getState();
   store.dispatch(startSetExpenses()).then(() => {
     const actions = store.getActions();
@@ -159,7 +164,7 @@ test("should fatch the expenses from firebase correctly", done => {
 });
 
 test("should remove expenses from firebase correctly", done => {
-  const store = createMockStore({});
+  const store = createMockStore({ auth: { uid } });
   const afterExpenses = [];
   store
     .dispatch(startRemoveExpenses({ id: expenses[0].id }))
@@ -170,7 +175,7 @@ test("should remove expenses from firebase correctly", done => {
         id: expenses[0].id
       });
       return database
-        .ref("expenses")
+        .ref(`users/${uid}/expenses`)
         .once("value")
         .then(snapshot => {
           snapshot.forEach(snapshotChild => {
@@ -188,7 +193,7 @@ test("should remove expenses from firebase correctly", done => {
 });
 
 test("should remove all expenses from firebase correctly", done => {
-  const store = createMockStore({});
+  const store = createMockStore({ auth: { uid } });
   const afterExpenses = [];
   store
     .dispatch(startRemoveAllExpenses())
@@ -198,7 +203,7 @@ test("should remove all expenses from firebase correctly", done => {
         type: "REMOVE_ALL_EXPENSES"
       });
       return database
-        .ref("expenses")
+        .ref(`users/${uid}/expenses`)
         .once("value")
         .then(snapshot => {
           snapshot.forEach(snapshotChild => {

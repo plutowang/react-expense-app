@@ -20,9 +20,7 @@ let hasRendered = false;
 const renderApp = () => {
   if (!hasRendered) {
     ReactDOM.render(jsx, document.getElementById("app"));
-    console.log("render!");
     hasRendered = true;
-    console.log(hasRendered);
   }
 };
 
@@ -36,7 +34,6 @@ ReactDOM.render("Loading...", document.getElementById("app"));
 
 firebase.auth().onAuthStateChanged(user => {
   if (user) {
-    console.log("uid", user.uid);
     store.dispatch(login(user.uid))
     store.dispatch(startSetExpenses()).then(() => {
       renderApp();
