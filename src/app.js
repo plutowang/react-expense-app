@@ -6,6 +6,7 @@ import { firebase } from "./firebase/firebase";
 
 import configureStore from "./store/configureStore";
 import { startSetExpenses } from "./actions/expenses";
+import { login, logout } from "./actions/auth";
 
 // reset css
 import "normalize.css/normalize.css";
@@ -35,6 +36,8 @@ ReactDOM.render("Loading...", document.getElementById("app"));
 
 firebase.auth().onAuthStateChanged(user => {
   if (user) {
+    console.log("uid", user.uid);
+    store.dispatch(login(user.uid))
     store.dispatch(startSetExpenses()).then(() => {
       renderApp();
       if (history.location.pathname === "/") {
@@ -42,6 +45,7 @@ firebase.auth().onAuthStateChanged(user => {
       }
     });
   } else {
+    store.dispatch(logout())
     renderApp();
     history.push("/");
   }
