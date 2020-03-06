@@ -1,0 +1,23 @@
+.input-group {
+  display: flex;
+  margin: 0 0 $m-size 0;
+  flex-direction: column;
+  @media (min-width: $desktop-breakpoint) {
+    flex-direction: row;
+    margin: 0 0 $l-size 0;
+  }
+}
+
+.input-group__item {
+  margin: 0 $s-size $s-size 0;
+  @media (min-width: $desktop-breakpoint) {
+    display: flex;
+    margin: 0 $m-size 0 0;
+  }
+}
+
+// // fixed DatePicker arrow hidden
+// .DateRangePickerInput_arrow_svg_1 {
+//   position: relative;
+//   z-index: 999;
+// }

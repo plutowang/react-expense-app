@@ -5,18 +5,27 @@ import { startRemoveAllExpenses } from "../actions/expenses";
 import selectExpenses from "../selectors/expenses";
 
 export const ExpenseList = props => (
-  <div>
-    <h1>Expense List</h1>
-    <button onClick={props.removeAll}>
-      Remove All
-    </button>
-    {props.expenses && props.expenses.length === 0 ? (
-      <p>No expenses</p>
-    ) : (
-      props.expenses.map(expense => (
-        <ExpenseListItem key={expense.id} {...expense} />
-      ))
-    )}
+  <div className="content-container">
+    <div className="list-header">
+      <div className="show-for-moblie">Ecpenses</div>
+      <div className="show-for-desktop">Ecpense</div>
+      <div className="show-for-desktop">Amount</div>
+    </div>
+    <div className="list-body">
+      {props.expenses && props.expenses.length === 0 ? (
+        <div className="list-item list-item--message">
+          <span className="list-content">No expenses</span>
+        </div>
+      ) : (
+        props.expenses.map(expense => (
+          <ExpenseListItem key={expense.id} {...expense} />
+        ))
+      )}
+      <br></br>
+      <button className="button button--remove" onClick={props.removeAll}>
+        Remove All
+      </button>
+    </div>
   </div>
 );
 const mapStateToProps = state => {
@@ -25,7 +34,7 @@ const mapStateToProps = state => {
   };
 };
 const mapDispatchToProps = dispatch => ({
-  removeAll: ()=>dispatch(startRemoveAllExpenses())
+  removeAll: () => dispatch(startRemoveAllExpenses())
 });
 // HOC
 export default connect(mapStateToProps, mapDispatchToProps)(ExpenseList);

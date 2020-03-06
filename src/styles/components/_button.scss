@@ -1,0 +1,43 @@
+.button {
+  background: $light-blue;
+  border: none;
+  border-radius: $xs-size;
+  border-bottom: 0.35rem solid darken($color: $light-blue, $amount: 10%);
+  color: white;
+  display: inline-block;
+  font-weight: 300;
+  font-size: 2rem;
+  padding: $s-size;
+  text-decoration: none;
+  line-height: 1;
+  transition: background .3s ease, border .3s ease;
+
+}
+
+.button:active {
+  background: darken($color: $light-blue, $amount: 5);
+  border-bottom: 0.2rem solid darken($color: $light-blue, $amount: 20%);
+}
+
+.button--link {
+  background: none;
+  border: none;
+  border-radius: 0;
+}
+
+.button--link:active {
+  background: none;
+  border-bottom: 0.1rem solid darken($color: white, $amount: 20);
+  // border-radius: 0;
+}
+
+.button--remove {
+  background:$grey;
+  border-bottom: 0.35rem solid darken($color: $grey, $amount: 10%);
+
+}
+
+.button--remove:active {
+  background: darken($color: $grey, $amount: 5);
+  border-bottom: 0.2rem solid darken($color: $grey, $amount: 20%);
+}

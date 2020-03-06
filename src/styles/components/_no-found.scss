@@ -1,0 +1,28 @@
+.no-found {
+  height: 20vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+}
+
+.no-found__text {
+  background: fade-out($color: $dark-blue, $amount: 0.5);
+  color: white;
+  font-size: 5rem;
+  font-weight: bold;
+  text-decoration: none;
+  text-align: center;
+  width: 100%;
+  padding: 10rem;
+  transition: background 0.3s ease;
+  &:hover {
+    background: rgba($color: $dark-blue, $alpha: 0.08);
+    color: $dark-blue;
+  }
+}

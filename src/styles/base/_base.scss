@@ -3,10 +3,21 @@ html {
 }
 * {
   outline: none;
+  box-sizing: border-box;
+  z-index: 2;
 }
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  // set background-image globaly with blurred
+  background-image: (
+    linear-gradient(0deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)),
+    url("/images/bg.jpeg")
+  );
+  background-size: cover;
+
+  color: $dark-grey;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
   font-size: $m-size;
+  line-height: 1.6;
 }
 
 button {
@@ -19,4 +30,10 @@ button:disabled {
 
 .is-active {
   font-weight: bold;
+}
+
+// fixed DatePicker arrow hidden
+.DateRangePickerInput_arrow_svg_1 {
+  position: relative;
+  z-index: 999;
 }

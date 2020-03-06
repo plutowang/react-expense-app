@@ -1,0 +1,21 @@
+.header {
+  background: $dark-blue;
+}
+
+.header__title {
+  color: white;
+  text-decoration: none;
+  margin: 0;
+  h1 {
+    margin: 0;
+  }
+}
+
+.header__content {
+  display: flex;
+  justify-content: space-between; /* Distribute items evenly
+                                   The first item is flush with the start,
+                                   the last is flush with the end */
+  align-items: center;
+  padding: $s-size 0;
+}
